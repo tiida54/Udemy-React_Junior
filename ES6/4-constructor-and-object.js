@@ -1,5 +1,5 @@
 class Car {
-    constructor(color) {
+    constructor(color = "red") {
         this.color = color;
         this.speed = 0;
         console.log("constructor", color);
@@ -19,4 +19,4 @@ let car2 = new Car("green");
 car1.run(50);
 car1.stop();
 
-console.log("------------")
+console.log("4------------end")
