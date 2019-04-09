@@ -27,4 +27,4 @@ function combine(first = "Jedi", last = "Wang", name = first + " " + last) {
 
 combine();
 
-console.log("------------")
+console.log("3------------end")
