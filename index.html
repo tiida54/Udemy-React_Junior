@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,37 @@
     <title>Document</title>
     <script src="./ES6/3-arrow-function.js"></script>
     <script src="./ES6/4-constructor-and-object.js"></script>
+    <script src="./ES6/5-extends.js"></script>
+    <script>
+        function getData() {
+            return new Promise(function (resolve, reject) {
+                let req = new XMLHttpRequest();
+                req.open("get", "https://training.pada-x.com/resources/javascript-es6-react/data.out");
+                req.onload = function () {
+                    resolve(this.responseText);
+                };
+                req.onerror = function () {
+                    reject("Error reject !");
+                };
+                req.send();
+            });
+        }
+
+        let promise = getData();
+        promise.then(function (result) {
+            console.log(result);
+            console.log("6-----------end");
+        }).catch(function(error){
+            console.log(error);
+            console.log("6-----------end");
+        });
+
+        console.log("6-----------start");
+    </script>
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
