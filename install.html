@@ -26,44 +26,56 @@
 
     <!-- Your custom script here -->
     <script type="text/babel">
-        class MyHead extends React.Component {
+        class MyForm extends React.Component{
             constructor(props){
                 super(props);
-                this.state={color:"red"}
+                this.state={
+                    name:"",
+                    gender:"male",
+                    story:""
+                }
             }
-            render() {
-            // console.log(this.props.level);
-            // return React.createElement(`h${this.props.level}`, null, "Hello Component")
-                return <div className="head"
-                        style={{color:this.state.color}}
-                        onClick={this.clickHandler.bind(this)}
-                        onMouseOver={this.onMouseOverHandler.bind(this)}
-                        onMouseOut={this.onMouseOutHandler.bind(this)}>Hello JSX {this.props.level}</div>;
+            render(){
+                return <form
+                        onSubmit={this.handleSubmit.bind(this)
+                    }>
+                        Name <input type="text" value={this.state.name}
+                        onChange={this.handleNameChange.bind(this)
+                    }/>
+                    <br/>
+                        Gender <select value={this.state.gender}
+                                onChange={this.handleGenderChange.bind(this)
+                                }>
+                                <option value="male">Man</option>
+                                <option value="female">Woman</option>
+                            </select>
+                    <br/>
+                        Story <textarea value={this.state.story}
+                                onChange={this.handleStoryChange.bind(this)
+                                }/>
+                    <br/>
+                        <input type="submit" value="Submit" />
+                    </form>;
             }
-            clickHandler(e){
-                // console.log("clickHandler")
-                this.setState({color:"blue"});
+            handleStoryChange(e){
+                this.setState({story:e.currentTarget.value});
             }
-            onMouseOverHandler(e){
-                this.setState({color:"green"});
+            handleGenderChange(e){
+                this.setState({gender:e.currentTarget.value});
             }
-            onMouseOutHandler(e){
-                this.setState({color:"red"});
+            handleNameChange(e){
+                this.setState({name:e.currentTarget.value});
+            }
+            handleSubmit(e){
+                e.preventDefault();
+                console.log("name: " + this.state.name);
+                console.log("gender: " + this.state.gender);
+                console.log("story: " + this.state.story);
             }
         }
-        class MyHeadList extends React.Component {
-            render() {
-                return <div>
-                    <MyHead level="1" color="red"/>
-                    <MyHead level="2" color="green"/>
-                    <MyHead level="3" color="blue"/>
-                    </div>;
-            }
-        }
-        window.addEventListener("load", () => {
-            let myComponent = <MyHeadList/>;
-            ReactDOM.render(myComponent, document.body);
-        });
+        window.addEventListener("load",()=>{
+            ReactDOM.render(<MyForm/>,document.body);
+        })
     </script>
 
     <!-- Load our React component. -->
