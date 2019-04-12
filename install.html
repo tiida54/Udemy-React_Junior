@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
+    <style type="text/css">
+        .head {
+            font-size: 24px;
+        }
+    </style>
 </head>
 
 <body>
@@ -16,9 +20,38 @@
     <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- Load Babel -->
+    <!-- v6 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Your custom script here -->
+    <script type="text/babel">
+        class MyHead extends React.Component {
+            render() {
+            // console.log(this.props.level);
+            // return React.createElement(`h${this.props.level}`, null, "Hello Component")
+            return <div className="head" style={{color:this.props.color}}>Hello JSX {this.props.level}</div>;
+                }
+            }
+        class MyHeadList extends React.Component {
+            render() {
+                return <div>
+                    <MyHead level="1" color="red"/>
+                    <MyHead level="2" color="green"/>
+                    <MyHead level="3" color="blue"/>
+                    </div>;
+            }
+        }
+        window.addEventListener("load", () => {
+            let myComponent = <MyHeadList/>;
+            ReactDOM.render(myComponent, document.body);
+        });
+    </script>
 
     <!-- Load our React component. -->
-    <script src="./React/8-react-install.js"></script>
+    <!-- <script src="./React/8-react-install.js"></script> -->
+    <!-- <script src="./React/9-react-component.js"></script> -->
+
     <script>
         console.log("React", React);
         console.log("ReactDOM", ReactDOM);
